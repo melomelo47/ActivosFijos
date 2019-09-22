@@ -14,15 +14,6 @@ public class ActivoFijoDAO {
  
     @PersistenceContext(unitName = "ActivosP")
     EntityManager em;
-          
-  /**
-  * Obtiene todos los activos fijos de la empresa
-  *
-  * @return         Lista de todos los activos fijos
-  */
-    public List<ActivoFijo> getAllActivoFijos(){
-        return em.createNamedQuery("ActivoFijo.findAll").getResultList();
-    }
     
   /**
   * Obtiene todos los activos fijos de la empresa por nombre
