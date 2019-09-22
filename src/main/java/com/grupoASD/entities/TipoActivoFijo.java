@@ -17,6 +17,8 @@ import javax.persistence.Table;
 })
 public class TipoActivoFijo implements Serializable{
     
+    public TipoActivoFijo(){}
+    
     @Id
     @Column(name = "id_tipo_activo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

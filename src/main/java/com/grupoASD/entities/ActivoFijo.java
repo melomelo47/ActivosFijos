@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupoASD.entities;
 
 import java.io.Serializable;
@@ -69,19 +64,19 @@ public class ActivoFijo implements Serializable{
     private String colorActivoFijo;
     
     @ManyToOne
-    @JoinColumn(name="estado_actual_fk_activo_fijo", referencedColumnName="id_estado")
+    @JoinColumn(name="estado_actual_fk_activo_fijo", referencedColumnName="id_estado", nullable = true)
     private Estado estadoActual;
     
     @ManyToOne
-    @JoinColumn(name="persona_fk_activo_fijo", referencedColumnName="id_persona")
+    @JoinColumn(name="persona_fk_activo_fijo", referencedColumnName="id_persona", nullable = true)
     private Persona persona;
     
     @ManyToOne
-    @JoinColumn(name="area_ciudad_fk_activo_fijo", referencedColumnName="id_area_ciudad")
+    @JoinColumn(name="area_ciudad_fk_activo_fijo", referencedColumnName="id_area_ciudad", nullable = true)
     private AreaCiudad areaCiudad;
     
     @ManyToOne
-    @JoinColumn(name="tipo_activo_fijo_fk", referencedColumnName="id_tipo_activo")
+    @JoinColumn(name="tipo_activo_fijo_fk", referencedColumnName="id_tipo_activo", nullable = true)
     private TipoActivoFijo tipoActivoFijo;
 
     public Integer getIdActivoFijo() {
