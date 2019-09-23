@@ -2,6 +2,8 @@ package com.grupoASD.DAO;
 
 import com.grupoASD.entities.ActivoFijo;
 import com.grupoASD.utils.TratamientoParams;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -62,8 +64,14 @@ public class ActivoFijoDAO {
        return activosFijosList;
     }
     
-    public void createActivoFijoDAO(ActivoFijo activoFijo) throws EntityExistsException, IllegalArgumentException, TransactionRequiredException{
-        em.persist(activoFijo);
+    public void createActivoFijoDAO(ActivoFijo activoFijo) throws Exception {
+        
+        try{
+            em.persist(activoFijo);
+        }catch(Exception e){
+            throw new Exception(e);
+        }
+            
     }
     
 }

@@ -15,6 +15,8 @@ import com.grupoASD.exceptionHandler.DatosFaltantesException;
 import com.grupoASD.exceptionHandler.ErroresBackendException;
 import com.grupoASD.utils.ResponseUtils;
 import com.grupoASD.utils.TratamientoParams;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -206,8 +208,7 @@ public class ActivosService {
                 }
                 
                 activoFijo.setPersona(persona);
-                
-                activoFijoDAO.createActivoFijoDAO(activoFijo);
+
                 
             } else if (!areaCiudadActivoFijo.equals("")) {
                 
@@ -222,16 +223,18 @@ public class ActivosService {
                 
                 activoFijo.setAreaCiudad(areaCiudad);
                 
-                activoFijoDAO.createActivoFijoDAO(activoFijo);
-                
-            } else {
-                activoFijoDAO.createActivoFijoDAO(activoFijo);
             }
             
         } else {
             
             throw new ErroresBackendException("El estado debe ser de tipo 'asignado' cuando este es asignado a una persona o ciudad, "
                     + "en caso de no ser asginado a nadie debe estar es un estado diferente a 'asginado'");
+        }
+        
+        try{
+            activoFijoDAO.createActivoFijoDAO(activoFijo);
+        } catch(Exception e){
+            throw new ErroresBackendException("La llave del serial es igual a una llave de serial ya insertada en la base de datos o la llave del serial está vacia");
         }
         
         responseAPI = ResponseUtils.corsResponsePOST(200, "POST");

@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,18 +21,14 @@ public class ActivoFijo implements Serializable{
     public ActivoFijo(){}
     
     @Id
-    @Column(name="id_activo_fijo")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idActivoFijo;
+    @Column(name="serial_activo_fijo")
+    private String serialActivoFijo;
     
     @Column(name="nombre_activo_fijo")
     private String nombreActivoFijo;
     
     @Column(name="descripcion_activo_fijo")
     private String descripcionActivoFijo;
-    
-    @Column(name="serial_activo_fijo")
-    private String serialActivoFijo;
     
     @Column(name="n_inventario_activo_fijo")
     private String numeroInvetarioActivoFijo;
@@ -78,14 +72,6 @@ public class ActivoFijo implements Serializable{
     @ManyToOne
     @JoinColumn(name="tipo_activo_fijo_fk", referencedColumnName="id_tipo_activo", nullable = true)
     private TipoActivoFijo tipoActivoFijo;
-
-    public Integer getIdActivoFijo() {
-        return idActivoFijo;
-    }
-
-    public void setIdActivoFijo(Integer idActivoFijo) {
-        this.idActivoFijo = idActivoFijo;
-    }
 
     public String getNombreActivoFijo() {
         return nombreActivoFijo;
