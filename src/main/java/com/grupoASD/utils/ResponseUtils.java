@@ -4,7 +4,7 @@ import java.util.List;
 import javax.ws.rs.core.Response;
 
 /**
- * Clase encargada de realizar la construcción de la respueta
+ * Clase encargada de realizar la construcción de la respuesta
  * 
  * @author Daniel Felipe Melo Melo
  */
@@ -16,18 +16,12 @@ public class ResponseUtils {
      *
      * @param lista              Lista la cual se mostrará en la respuesta por medio del JSON
      * @param codigoStatus       Código de repuesta HTTP
-     * @param metodoPermitido    Método al cual se concedera el acceso al Cross origin resource Sharing
      *
      * @return                   Retorna el response  
      */
-    public static Response corsResponseGET(List lista ,int codigoStatus, String metodoPermitido){
+    public static Response corsResponseGET(List lista ,int codigoStatus){
         
-    Response responseAPI = Response.status(codigoStatus)
-      .header("Access-Control-Allow-Origin",      "*")
-      .header("Access-Control-Allow-Credentials", "true")
-      .header("Access-Control-Allow-Headers",     "origin, content-type, accept, authorization")
-      .header("Access-Control-Allow-Methods",      metodoPermitido) 
-      .entity( lista ).build(); 
+    Response responseAPI = Response.status(codigoStatus).entity( lista ).build(); 
         
       return responseAPI;
     }
@@ -35,18 +29,12 @@ public class ResponseUtils {
     /**
      *
      * @param codigoStatus       Código de repuesta HTTP
-     * @param metodoPermitido    Método al cual se concedera el acceso al Cross origin resource Sharing
      *
      * @return                   Retorna el response  
      */
-    public static Response corsResponsePOST(int codigoStatus, String metodoPermitido){
+    public static Response corsResponseGen(int codigoStatus){
         
-    Response responseAPI = Response.status(codigoStatus)
-      .header("Access-Control-Allow-Origin",      "*")
-      .header("Access-Control-Allow-Credentials", "true")
-      .header("Access-Control-Allow-Headers",     "origin, content-type, accept, authorization")
-      .header("Access-Control-Allow-Methods",      metodoPermitido) 
-      .build(); 
+    Response responseAPI = Response.status(codigoStatus).build(); 
         
       return responseAPI;
     }

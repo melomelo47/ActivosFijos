@@ -46,7 +46,7 @@ public class AreasService {
             throw new BusquedaNoResultException("No hay áreas en la base de datos");
         }
         
-        responseAPI = ResponseUtils.corsResponseGET(areas, 200, "GET");
+        responseAPI = ResponseUtils.corsResponseGET(areas, 200);
         
         return responseAPI; 
     }

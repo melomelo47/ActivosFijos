@@ -22,7 +22,7 @@ public class TratamientoParams {
    */
     public static Date convertirFecha(String fechaEntrada) throws ParseException{
         Date fechaConvertida = new SimpleDateFormat("yyyy-MM-dd").parse(fechaEntrada);
-
+        
         return fechaConvertida;
     }
    
@@ -51,4 +51,22 @@ public class TratamientoParams {
         return numero;
     }
     
+    public static boolean validarFormatoFecha(Date fecha) throws IndexOutOfBoundsException{
+       String fechaStr = String.valueOf(fecha);
+       String[] fechaArr = fechaStr.split("-");
+       
+       boolean fechBool;
+       int mes = Integer.parseInt(fechaArr[1]);
+       int dia = Integer.parseInt(fechaArr[2]);
+        System.out.println("el mes es " + mes);
+        System.out.println(dia);
+       if(mes <= 12 && dia <= 31){
+           fechBool = true;
+       } else {
+           fechBool = false;
+       }
+              
+      return fechBool;
+       
+    }
 }

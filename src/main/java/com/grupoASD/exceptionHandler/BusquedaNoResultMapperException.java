@@ -8,7 +8,7 @@ import javax.ws.rs.ext.Provider;
 
 /**
  * Clase que mapea una excepción personalizada referente a que la busqueda no arrojó datos
- * JAX-RS lee las excepciones personalizadas en tiempo de ejecucióny las muestra
+ * JAX-RS lee las excepciones personalizadas en tiempo de ejecución y las muestra
  * 
  * @author Usuario
  */

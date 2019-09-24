@@ -32,6 +32,7 @@ public class PersonasService {
      * Lista todas las personas
      *  
      * @return Respuesta la lista de personas en formato JSON
+     * @throws BusquedaNoResultException si la busqueda no arroja resultados
      */
     @GET
     @Consumes(MediaType.APPLICATION_JSON)
@@ -45,7 +46,7 @@ public class PersonasService {
             throw new BusquedaNoResultException("No hay personas en la base de datos");
         }
         
-        responseAPI = ResponseUtils.corsResponseGET(personas, 200, "GET");
+        responseAPI = ResponseUtils.corsResponseGET(personas, 200);
         
         return responseAPI;
     }

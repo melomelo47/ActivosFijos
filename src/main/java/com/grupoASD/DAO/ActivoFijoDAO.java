@@ -2,17 +2,14 @@ package com.grupoASD.DAO;
 
 import com.grupoASD.entities.ActivoFijo;
 import com.grupoASD.utils.TratamientoParams;
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TransactionRequiredException;
 
 /**
  * Clase que interactua con la base de datos por medio de consultas en Hibernate
@@ -39,6 +36,21 @@ public class ActivoFijoDAO {
         activosFijosList = query.getResultList();
         
         return activosFijosList;
+    }
+    
+    public ActivoFijo getActivoFijoBySerial(String serial){ 
+        ActivoFijo activoFijo = new ActivoFijo();
+        
+        Query query = em.createQuery("select ac from ActivoFijo ac where ac.serialActivoFijo = :serialActivo");
+        query.setParameter("serialActivo", serial);
+        
+        try{
+            activoFijo = (ActivoFijo) query.getSingleResult();
+        }catch(NoResultException n){
+            activoFijo = null;
+        }
+        
+        return activoFijo;
     }
     
   /**
@@ -68,6 +80,17 @@ public class ActivoFijoDAO {
         
         try{
             em.persist(activoFijo);
+        }catch(Exception e){
+            throw new Exception(e);
+        }
+            
+    }
+    
+    
+    public void updateActivoFijoDAO(ActivoFijo activoFijo) throws Exception {
+        
+        try{
+            em.merge(activoFijo);
         }catch(Exception e){
             throw new Exception(e);
         }
